@@ -1,5 +1,5 @@
 """
-<plugin key="Qlima" name="Qlima Wifi airconditioner" author="Alain" version="1.0.0">
+<plugin key="Qlima" name="Qlima Wifi airconditioner" author="Alain" version="1.0.1">
     <description>
         <h2>Qlima Wifi AС</h2><br/>
         <h3>Features</h3>
@@ -17,6 +17,8 @@
         <param field="Address" label="IP Address" width="200px" required="true" default="192.168.0.61"/>
         <param field="Mode4" label="Port" width="100px" required="true" default="6444"/>
         <param field="Mode3" label="Unit id" width="300px" required="true" default="18691600000000"/>
+        <param field="Password" label="Unit Key (if any)" width="500px" required="false" default="YOUR_AC_K1"/>
+        <param field="Username" label="Unit Token (if any)" width="1000px" required="false" default="YOUR_AC_TOKEN"/>
         <param field="Mode1" label="Update interval (sec):" width="75px">
             <options>
                 <option label="30" value="3" />
@@ -40,8 +42,6 @@ import sys
 sys.path.append('/usr/lib/python3/dist-packages')
 
 from msmart.device import air_conditioning_device as ac
-from msmart.device import device as midea_device
-
 
 
 class BasePlugin:
@@ -57,8 +57,11 @@ class BasePlugin:
         device_ip = Parameters["Address"]
         device_id = Parameters["Mode3"]
         device_port = Parameters["Mode4"]
-        client = midea_device(device_ip, int(device_id), int(device_port))
-        device = client.setup()
+        device_ac_k1 = Parameters["Password"]
+        device_ac_token = Parameters["Username"]
+        device = ac(device_ip, int(device_id), int(device_port))
+        if device_ac_k1 and device_ac_token:
+            device.authenticate(device_ac_k1, device_ac_token)
 
 # get AC info
         device.refresh() 
@@ -123,8 +126,11 @@ class BasePlugin:
         device_ip = Parameters["Address"]
         device_id = Parameters["Mode3"]
         device_port = Parameters["Mode4"]
-        client = midea_device(device_ip, int(device_id), int(device_port))
-        device = client.setup()
+        device_ac_k1 = Parameters["Password"]
+        device_ac_token = Parameters["Username"]
+        device = ac(device_ip, int(device_id), int(device_port))
+        if device_ac_k1 and device_ac_token:
+            device.authenticate(device_ac_k1, device_ac_token)
       
         Domoticz.Debug(
             "Command received U=" + str(Unit) + " C=" + str(Command) + " L= " + str(Level) + " H= " + str(Hue))
@@ -274,8 +280,11 @@ class BasePlugin:
         device_ip = Parameters["Address"]
         device_id = Parameters["Mode3"]
         device_port = Parameters["Mode4"]
-        client = midea_device(device_ip, int(device_id), int(device_port))
-        device = client.setup()
+        device_ac_k1 = Parameters["Password"]
+        device_ac_token = Parameters["Username"]
+        device = ac(device_ip, int(device_id), int(device_port))
+        if device_ac_k1 and device_ac_token:
+            device.authenticate(device_ac_k1, device_ac_token)
         
         try:
             device.refresh()
