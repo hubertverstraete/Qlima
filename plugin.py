@@ -279,7 +279,7 @@ class BasePlugin:
         
         try:
             device.refresh()
-            if device.indoor_temperature == 0.0 and device.indoor_temperature == 0.0 and device.target_temperature == 17.0:
+            if device.indoor_temperature == 0.0 and device.outdoor_temperature == 0.0 and device.target_temperature == 17.0:
                raise ConnectionError('Could not connect with device',)
             Devices[1].Update(nValue=device.power_state, sValue=str(device.power_state))
             Devices[2].Update(nValue=0, sValue=str(device.indoor_temperature))
