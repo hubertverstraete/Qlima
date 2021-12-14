@@ -287,7 +287,6 @@ class BasePlugin:
             Devices[4].Update(nValue=device.power_state, sValue=str(device.target_temperature))
             
             
-            Devices[5].Update(nValue=device.power_state, sValue=str(device.operational_mode))
             if str(device.operational_mode) == 'operational_mode_enum.auto':
                 Level = '10'
             elif str(device.operational_mode) == 'operational_mode_enum.heat':
@@ -301,8 +300,6 @@ class BasePlugin:
             Devices[5].Update(nValue=device.power_state, sValue=str(Level))
             
             
-            
-            Devices[6].Update(nValue=device.power_state, sValue=str(device.fan_speed))
             if str(device.fan_speed) == 'fan_speed_enum.High':
                 Level = '10'
             elif str(device.fan_speed) == 'fan_speed_enum.Medium':
@@ -313,8 +310,7 @@ class BasePlugin:
                 Level = '40'
             Devices[6].Update(nValue=device.power_state, sValue=str(Level))
             
-                        
-            Devices[7].Update(nValue=device.power_state, sValue=str(device.swing_mode))
+            
             if str(device.swing_mode) == 'swing_mode_enum.Vertical':
                 Level = '10'
             elif str(device.swing_mode) == 'swing_mode_enum.Horizontal':
