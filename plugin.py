@@ -154,7 +154,7 @@ class BasePlugin:
             elif Level < 17:
                 Level = 17
 
-            device.target_temperature = int(Level)
+            device.target_temperature = float(Level)
             device.apply()
             Devices[4].Update(nValue=device.power_state, sValue=str(Level))
 
