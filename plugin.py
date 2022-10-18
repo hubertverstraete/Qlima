@@ -1,5 +1,5 @@
 """
-<plugin key="Qlima" name="Qlima Wifi airconditioner" author="Alain" version="1.0.1">
+<plugin key="Qlima" name="Qlima Wifi airconditioner" author="Alain" version="1.0.2">
     <description>
         <h2>Qlima Wifi AС</h2><br/>
         <h3>Features</h3>
@@ -41,7 +41,7 @@ import sys
 
 sys.path.append('/usr/lib/python3/dist-packages')
 
-from msmart.device import air_conditioning_device as ac
+from msmart.device import air_conditioning as ac
 
 
 class BasePlugin:
